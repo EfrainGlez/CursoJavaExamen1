@@ -22,7 +22,7 @@ dependencies {
 
 
 jar {
-    baseName = 'gs-gradle'
+    baseName = 'cursoJava-examen1'
     version =  '0.1.0'
 
     manifest {

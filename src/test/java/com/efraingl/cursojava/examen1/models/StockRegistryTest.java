@@ -13,7 +13,7 @@ public class StockRegistryTest {
 
     @Test
     public void constructorConParametros() throws ParseException {
-        SimpleDateFormat dt = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
         Date fecha = dt.parse("05-05-1979");
         BigDecimal apertura = new BigDecimal(123.321);
         BigDecimal cierre = new BigDecimal(123.321);
@@ -36,7 +36,7 @@ public class StockRegistryTest {
 
     @Test
     public void gettersYSetters() throws ParseException {
-        SimpleDateFormat dt = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
         Date fecha = dt.parse("05-05-1979");
         BigDecimal apertura = new BigDecimal(123.321);
         BigDecimal cierre = new BigDecimal(123.321);
