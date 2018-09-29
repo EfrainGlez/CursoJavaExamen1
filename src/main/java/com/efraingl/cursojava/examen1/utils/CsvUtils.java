@@ -22,7 +22,7 @@ import java.nio.file.Files;
 
 public class CsvUtils {
 
-    public static List<StockRegistry> readStockRegistryCsvFile(String fileName)
+    public static List<StockRegistry> readStockRegistryCsvFileFromResources(String fileName)
     {
         List<StockRegistry> csvData = null;
 

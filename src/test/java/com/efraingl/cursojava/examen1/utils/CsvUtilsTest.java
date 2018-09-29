@@ -21,7 +21,7 @@ public class CsvUtilsTest {
 
         setVars();
 
-        List<StockRegistry> stockRegistryList = CsvUtils.readStockRegistryCsvFile("stocks-ITX.csv");
+        List<StockRegistry> stockRegistryList = CsvUtils.readStockRegistryCsvFileFromResources("stocks-ITX.csv");
 
         assertEquals(stockRegistryList.get(0).getFecha().toString(), fecha1.toString());
         assertEquals(stockRegistryList.get(1).getFecha().toString(), fecha2.toString());

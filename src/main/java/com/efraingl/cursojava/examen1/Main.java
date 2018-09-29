@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<StockRegistry> stock = CsvUtils.readStockRegistryCsvFile("stocks-ITX.csv");
+        List<StockRegistry> stock = CsvUtils.readStockRegistryCsvFileFromResources("stocks-ITX.csv");
 
         System.out.println(stock.toString());
 
