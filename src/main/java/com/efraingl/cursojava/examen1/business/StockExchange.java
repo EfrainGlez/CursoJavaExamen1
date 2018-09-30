@@ -3,19 +3,28 @@ package com.efraingl.cursojava.examen1.business;
 import com.efraingl.cursojava.examen1.models.StockRegistry;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class StockExchange {
 
     private List<StockRegistry> stockRegistryList;
-    private BigDecimal shares;
+    private BigDecimal shares, moneyInvested;
 
 
     public StockExchange(List<StockRegistry> stockRegistries) {
         stockRegistryList = stockRegistries;
         shares = new BigDecimal("0.0");
+        moneyInvested = new BigDecimal("0.0");
     }
+
+    public BigDecimal getMoneyInvested() { return moneyInvested; }
+
+    public void setMoneyInvested(BigDecimal moneyInvested) { this.moneyInvested = moneyInvested; }
+
+    public void addMoneyInvested(BigDecimal money) { this.moneyInvested = this.moneyInvested.add(money); }
 
     public BigDecimal getShares() {
         return shares;
@@ -31,8 +40,11 @@ public class StockExchange {
         BigDecimal sharePrice = getOpeningPrice(date);
         if(sharePrice == null) { return; }
 
-        BigDecimal newShares = quantity.multiply(sharePrice);
+        BigDecimal newShares = quantity.divide(sharePrice, 3, BigDecimal.ROUND_HALF_UP);
         addShares(newShares);
+        addMoneyInvested(quantity);
+
+        System.out.println(getInvestInfo(date));
     }
 
     public BigDecimal sellShares(Date date) {
@@ -40,7 +52,7 @@ public class StockExchange {
         if(sharePrice == null) { return new BigDecimal("0.0"); }
         BigDecimal shares = getShares();
 
-        BigDecimal money = shares.divide(sharePrice, 3, BigDecimal.ROUND_HALF_UP);
+        BigDecimal money = shares.multiply(sharePrice).setScale(3, BigDecimal.ROUND_HALF_UP);
         setShares(new BigDecimal("0.0"));
 
         return money;
@@ -59,20 +71,22 @@ public class StockExchange {
     }
 
     public String getInvestInfo(Date date) {
-        BigDecimal closePrice = getClosePrice(date);
         BigDecimal shares = getShares().setScale(3, BigDecimal.ROUND_HALF_UP);
-        BigDecimal money = shares.divide(closePrice, 3, BigDecimal.ROUND_HALF_UP);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-        return (new StringBuilder())
-                .append("Shares quantity: ")
+        return new StringBuilder()
+                .append("Investment: ")
+                .append(dateFormat.format(date))
+                .append(" | ")
+                .append("Money invested actually: ")
+                .append(getMoneyInvested())
+                .append("€ | ")
+                .append("Shares of stock: ")
                 .append(shares)
-                .append(" - If you sell now you get: ")
-                .append(money)
-                .append("€")
                 .toString();
     }
 
-    private StockRegistry getStockRegistryGreaterOrEqual(Date date) {
+    public StockRegistry getStockRegistryGreaterOrEqual(Date date) {
         for (StockRegistry stockRegistry : stockRegistryList) {
             if (stockRegistry.getFecha().compareTo(date) >= 0) {
                 return stockRegistry;

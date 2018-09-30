@@ -55,7 +55,7 @@ public class StockExchangeTest {
         stockExchange.invest(fecha, new BigDecimal("1000.0"));
 
         BigDecimal shares = stockExchange.getShares();
-        BigDecimal expectedShares = (new BigDecimal("29.705")).multiply(new BigDecimal("1000.0"));
+        BigDecimal expectedShares = (new BigDecimal("1000.0")).divide(new BigDecimal("29.705"), 3 , BigDecimal.ROUND_HALF_UP);
 
         assertEquals(shares.compareTo(expectedShares), 0);
     }
@@ -69,11 +69,9 @@ public class StockExchangeTest {
         stockExchange.invest(fecha, new BigDecimal("1000.0"));
 
         BigDecimal money = stockExchange.sellShares(fecha);
-        BigDecimal expectedMoney = (new BigDecimal("29705.0"))
-                .divide(new BigDecimal("29.58"), 3, BigDecimal.ROUND_HALF_UP);
 
-        System.out.println(money.toString());
-        System.out.println(expectedMoney.toString());
+        BigDecimal expectedMoney = (new BigDecimal("33.664"))
+                .multiply(new BigDecimal("29.58")).setScale(3, BigDecimal.ROUND_HALF_UP);
 
         assertEquals(money.compareTo(expectedMoney), 0);
     }
@@ -135,7 +133,7 @@ public class StockExchangeTest {
         stockExchange.invest(fecha, new BigDecimal("1000.0"));
 
         String output = stockExchange.getInvestInfo(fecha);
-        String expectedOutput = "Shares quantity: 29705.000 - If you sell now you get: 1004.226€";
+        String expectedOutput = "Investment: 27-12-2017 | Money invested actually: 1000.0€ | Shares of stock: 33.664";
 
         assertEquals(output.compareTo(expectedOutput), 0);
     }

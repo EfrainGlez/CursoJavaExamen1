@@ -26,9 +26,6 @@ public class CsvUtilsTest {
         assertEquals(stockRegistryList.get(1).getFecha().toString(), fecha2.toString());
         assertEquals(stockRegistryList.get(2).getFecha().toString(), fecha3.toString());
 
-        System.out.println(stockRegistryList.get(0).getCierre().toString());
-        System.out.println(cierre1.toString());
-
         assertEquals(stockRegistryList.get(0).getCierre().toString(), cierre1.toString());
         assertEquals(stockRegistryList.get(1).getCierre().toString(), cierre2.toString());
         assertEquals(stockRegistryList.get(2).getCierre().toString(), cierre3.toString());
