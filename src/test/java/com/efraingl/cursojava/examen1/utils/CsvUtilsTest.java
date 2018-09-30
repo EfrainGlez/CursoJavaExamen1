@@ -18,7 +18,6 @@ public class CsvUtilsTest {
 
     @Test
     public void readStockRegistryCsvFile() throws ParseException {
-
         setVars();
 
         List<StockRegistry> stockRegistryList = CsvUtils.readStockRegistryCsvFileFromResources("stocks-ITX.csv");
@@ -42,16 +41,16 @@ public class CsvUtilsTest {
     private void setVars() throws ParseException {
         SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
 
-        fecha1 = dt.parse("28-12-2017");
+        fecha1 = dt.parse("22-12-2017");
         fecha2 = dt.parse("27-12-2017");
-        fecha3 = dt.parse("22-12-2017");
+        fecha3 = dt.parse("28-12-2017");
 
-        cierre1 = new BigDecimal("29.17");
+        cierre1 = new BigDecimal("29.615");
         cierre2 = new BigDecimal("29.58");
-        cierre3 = new BigDecimal("29.615");
+        cierre3 = new BigDecimal("29.17");
 
-        apertura1 = new BigDecimal("29.6");
+        apertura1 = new BigDecimal("29.66");
         apertura2 = new BigDecimal("29.705");
-        apertura3 = new BigDecimal("29.66");
+        apertura3 = new BigDecimal("29.6");
     }
 }

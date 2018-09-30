@@ -39,7 +39,7 @@ public class CsvUtils {
             final CellProcessor[] processors = getProcessors();
 
             StockRegistry stockRegistry;
-            csvData = new ArrayList<StockRegistry>();
+            csvData = new ArrayList<>();
 
             while ((stockRegistry = beanReader.read(StockRegistry.class, header, processors)) != null) {
                 csvData.add(stockRegistry);
@@ -51,6 +51,8 @@ public class CsvUtils {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+
+        Collections.reverse(csvData);
 
         return csvData;
     }
@@ -74,7 +76,6 @@ public class CsvUtils {
                 new ParseDate("dd-MM-yyyy"),
                 new ParseBigDecimal(),
                 new ParseBigDecimal()
-
         };
     }
 }
